@@ -4,8 +4,11 @@ namespace Inchoo\Sample02\Model;
 
 class Dummy2 extends Dummy
 {
-    public function __construct($input = 0)
+    public function __construct($input)
     {
-        //var_dump("Dummy2::__construct($input)");
+        foreach($input as $key => $value){
+            $this->$key = $value;
+        }
+        echo "Dummy2";
     }
 }

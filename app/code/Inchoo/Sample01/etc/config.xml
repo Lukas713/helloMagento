@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <display_text>Hello World</display_text>
+                <username>1</username>
             </general>
         </helloworld>
     </default>
