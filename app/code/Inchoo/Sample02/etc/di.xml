@@ -29,11 +29,7 @@
             </arguments>
     </virtualType>
 
-    <type name="Inchoo\Sample02\Model\B">
-        <arguments>
-            <argument name="letter" xsi:type="object">Inchoo\Sample02\Model\A</argument>
-        </arguments>
-    </type>
-
+    <preference for="Inchoo\Sample02\Model\A" type="Inchoo\Sample02\Model\B"/>
     <preference for="Inchoo\Sample02\Model\B" type="Inchoo\Sample02\Model\C"/>
+    <preference for="Inchoo\Sample02\Model\C" type="Inchoo\Sample02\Model\A"/>
 </config>

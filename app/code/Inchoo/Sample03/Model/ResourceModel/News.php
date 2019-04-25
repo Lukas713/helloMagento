@@ -6,7 +6,7 @@ class News extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     /**
      * Initialize news Resource
-     *
+     * Define main table
      * @return void
      */
     protected function _construct()

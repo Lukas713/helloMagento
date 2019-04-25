@@ -43,7 +43,8 @@ class Crud  extends \Magento\Framework\App\Action\Action
          */
         $news = $this->newsModelFactory->create();
         $news->setTitle('Some fake news title');
-
+        $news->setCreated_at('2019-04-25 11:00:10');
+        $news->setContent("bla bla bla bla bla bla bla");
         $this->newsResource->save($news);
 
         //var_dump($news); //big dump, can crash browser without xdebug

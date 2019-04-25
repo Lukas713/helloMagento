@@ -31,6 +31,22 @@ class InstallSchema implements InstallSchemaInterface
             'News Title'
         )->setComment(
             'News Table'
+        )->addColumn(
+            'created_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_DATETIME,
+            50,
+            []
+        )->addColumn(
+            'updated_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_DATETIME,
+            50,
+            []
+        )->addColumn(
+            'content',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
+            []
+
         );
 
         $setup->getConnection()->createTable($table);
