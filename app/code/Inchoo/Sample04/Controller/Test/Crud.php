@@ -2,10 +2,12 @@
 
 namespace Inchoo\Sample04\Controller\Test;
 
+use Magento\Cms\Model\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\CouldNotSaveException;
+use Magento\Framework\Registry;
 
 class Crud extends Action
 {
@@ -19,6 +21,10 @@ class Crud extends Action
      */
     protected $newsModelFactory;
 
+    protected $pageFactory;
+
+    protected $registry;
+
     /**
      * Crud constructor.
      *
@@ -29,11 +35,15 @@ class Crud extends Action
     public function __construct(
         Context $context,
         \Inchoo\Sample04\Api\NewsRepositoryInterface $newsRepository,
-        \Inchoo\Sample04\Api\Data\NewsInterfaceFactory $newsModelFactory
+        \Inchoo\Sample04\Api\Data\NewsInterfaceFactory $newsModelFactory,
+        \Magento\Framework\View\Result\PageFactory $pageFactory,
+        Registry $registry
     ) {
         parent::__construct($context);
         $this->newsRepository = $newsRepository;
         $this->newsModelFactory = $newsModelFactory;
+        $this->pageFactory = $pageFactory;
+        $this->registry = $registry;
     }
 
     /**
@@ -44,16 +54,25 @@ class Crud extends Action
         /**
          * Load through repository example
          */
-        try {
-            $news = $this->newsRepository->getById(1);
-            var_dump($news->debug());
-        } catch (NoSuchEntityException $e) {
-            //handle error
+        try{
+            $id = $this->getRequest()->getParam("id");
+            $news = $this->newsRepository->getById($id);
+            if(!$this->newsRepository->delete($news)){
+                $this->registry->register('news', null);
+            }else {
+                $this->registry->register('news', $news);
+            }
+        } catch (\Exception $exception){
+            $this->registry->register('news', null);
         }
+        return $this->pageFactory->create();
+
+
+
 
         /**
          * Save through repository example
-         */
+
 
         try {
             $news = $this->newsModelFactory->create();
@@ -65,6 +84,7 @@ class Crud extends Action
             //handle error
         }
 
+         */
     }
 
 }

@@ -5,5 +5,4 @@
     <preference for="Inchoo\Sample04\Api\Data\NewsSearchResultsInterface" type="Magento\Framework\Api\SearchResults" />
     <preference for="Inchoo\Sample04\Api\Data\NewsInterface" type="Inchoo\Sample04\Model\News" />
     <preference for="Inchoo\Sample04\Api\NewsRepositoryInterface" type="Inchoo\Sample04\Model\NewsRepository" />
-
 </config>

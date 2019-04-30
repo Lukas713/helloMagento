@@ -1,0 +1,11 @@
+<?php
+
+    /**
+     * @var \Inchoo\Sample04\Block\Delete $block
+     */
+    $news = $block->index();
+    if(!$news){
+        echo "There is no news with such id";
+        return;
+    }
+    echo "Deleted news with title " . $news->getTitle();

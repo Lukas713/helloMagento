@@ -91,7 +91,12 @@ class NewsRepository implements NewsRepositoryInterface
      */
     public function delete(NewsInterface $news)
     {
-        // TODO: Implement delete() method.
+        try {
+            $this->newsResource->delete($news);
+            return true;
+        } catch (\Exception $exception){
+            throw new CouldNotSaveException(__($exception->getMessage()));
+        }
     }
 
     /**
