@@ -16,6 +16,10 @@ class Crud  extends \Magento\Framework\App\Action\Action
      */
     protected $newsModelFactory;
 
+    protected $commentsFactory;
+
+    protected $commentsResource;
+
     /**
      * Controller constructor.
      * @param Context $context
@@ -25,12 +29,16 @@ class Crud  extends \Magento\Framework\App\Action\Action
     public function __construct(
         Context $context,
         \Inchoo\Sample03\Model\ResourceModel\News $newsResource,
-        \Inchoo\Sample03\Model\NewsFactory $newsModelFactory
+        \Inchoo\Sample03\Model\NewsFactory $newsModelFactory,
+        \Inchoo\Sample03\Model\ResourceModel\Comments $commentsResource,
+        \Inchoo\Sample03\Model\CommentsFactory $commentsFactory
+
     ) {
         parent::__construct($context);
-
         $this->newsResource = $newsResource;
         $this->newsModelFactory = $newsModelFactory;
+        $this->commentsResource = $commentsResource;
+        $this->commentsFactory = $commentsFactory;
     }
 
     /**
@@ -38,9 +46,35 @@ class Crud  extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+
+        $comments = $this->commentsFactory->create();
+        $comments->setCommentsContent("text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release");
+        $comments->setInchooNews(1);
+        $this->commentsResource->save($comments);
+
+        $comments->setCommentsContent("text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release");
+        $comments->setInchooNews(3);
+        $this->commentsResource->save($comments);
+
+
+        $comments->setCommentsContent("text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release");
+        $comments->setInchooNews(3);
+        $this->commentsResource->save($comments);
+
+
+        $comments->setCommentsContent("text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release");
+        $comments->setInchooNews(2);
+        $this->commentsResource->save($comments);
+
+        $comments->setCommentsContent("text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release");
+        $comments->setInchooNews(1);
+        $this->commentsResource->save($comments);
+
+
         /**
          * New entry example
          */
+/*
         $news = $this->newsModelFactory->create();
         $news->setTitle('Some fake news title');
         $news->setCreated_at('2019-04-25 11:00:10');
@@ -50,10 +84,11 @@ class Crud  extends \Magento\Framework\App\Action\Action
         //var_dump($news); //big dump, can crash browser without xdebug
         var_dump($news->debug());
 
-
+*/
         /**
          * Load example
          */
+/*
         $news = $this->newsModelFactory->create();
         $this->newsResource->load($news, 1);
 
@@ -61,7 +96,7 @@ class Crud  extends \Magento\Framework\App\Action\Action
             //check if loaded
         }
 
-        var_dump($news->debug());
+*/
     }
 
 }
