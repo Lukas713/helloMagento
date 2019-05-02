@@ -49,7 +49,6 @@ class NewsRepository implements NewsRepositoryInterface
         $this->newsModelFactory = $newsModelFactory;
         $this->newsResource = $newsResource;
         $this->newsCollectionFactory = $newsCollectionFactory;
-
         $this->searchResultsFactory = $searchResultsFactory;
         $this->collectionProcessor = $collectionProcessor;
     }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Inchoo\Sample04\Api\Data;
+namespace Inchoo\Sample03\Api\Data;
 
 
 interface NewsSearchResultsInterface

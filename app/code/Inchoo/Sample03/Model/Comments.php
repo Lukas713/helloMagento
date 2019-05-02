@@ -4,7 +4,7 @@
 namespace Inchoo\Sample03\Model;
 
 
-use Inchoo\Sample04\Api\Data\CommentsInterface;
+use Inchoo\Sample03\Api\Data\CommentsInterface;
 use Magento\Framework\Model\AbstractModel;
 
 class Comments extends AbstractModel implements CommentsInterface

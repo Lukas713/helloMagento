@@ -1,10 +1,25 @@
 <?php
 
 
-namespace Inchoo\Sample04\Api\Data;
+namespace Inchoo\Sample03\Api\Data;
 
 
-interface CommentsSearchResultsInterface
+use Magento\Framework\Api\SearchCriteriaInterface;
+
+interface CommentsSearchResultsInterface extends SearchCriteriaInterface
 {
+    /**
+     * Returns comment list
+     *
+     * @return \Inchoo\Sample03\Api\Data\CommentsInterface[]
+     */
+    public function getItems();
 
+    /**
+     * Inserts comment list
+     *
+     * @param \Inchoo\Sample03\Api\Data\CommentsInterface[] $items
+     * @return $this
+     */
+    public function setItems(array $items);
 }

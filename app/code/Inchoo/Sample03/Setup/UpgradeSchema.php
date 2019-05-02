@@ -85,7 +85,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
-        if(version_compare($context->getVersion(), '1.0.5') < 0){
+        if(version_compare($context->getVersion(), '1.1.2') < 0){
 
             $table = $setup->getConnection()->newTable(
                 'inchoo_news_comments'
@@ -96,7 +96,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
                 'news id'
             )->addColumn(
-                'content',
+                'comments_content',
                 \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                 255,
                 []
@@ -109,10 +109,10 @@ class UpgradeSchema implements UpgradeSchemaInterface
             )->addForeignKey(
                     $setup->getFkName(
                         'inchoo_news_comments',
-                        'comment_id',
+                        'inchoo_news',
                         'inchoo_news',
                         'news_id'),
-                    'comment_id',
+                    'inchoo_news',
                     $setup->getTable('inchoo_news'),
                     'news_id',
                     \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
@@ -131,7 +131,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 );
         }
 
-        if (version_compare($context->getVersion(), '1.0.9') < 0) {
+        if (version_compare($context->getVersion(), '1.1.3') < 0) {
             $table = $setup->getConnection()->changeColumn(
                 $setup->getTable('inchoo_news_comments'),
                 'content',

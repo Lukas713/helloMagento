@@ -4,11 +4,8 @@ namespace Inchoo\Sample04\Controller\Test;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-
 use Inchoo\Sample04\Api\Data\NewsInterface;
-
 use Inchoo\Sample04\Api\NewsRepositoryInterface;
-
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 

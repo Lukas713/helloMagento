@@ -1,72 +1,137 @@
 <?php
 
-
 namespace Inchoo\Sample03\Model;
 
-
+use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Exception\CouldNotSaveException;
+use Inchoo\Sample03\Api\Data\CommentsInterface;
+use PhpMyAdmin\Di\NotFoundException;
 
 class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInterface
 {
     /**
-     * @var ResourceModel\Comments\CollectionFactory
+     * @var \Inchoo\Sample03\Model\ResourceModel\Comments\CollectionFactory
      */
     private $collectionFactory;
 
     /**
-     * @var ResourceModel\Comments
+     * @var \Inchoo\Sample03\Model\ResourceModel\Comments
      */
-    private $commentsRecourse;
+    private $commentResource;
 
     /**
-     * @var CommentsFactory
+     * @var \Inchoo\Sample03\Model\CommentsFactory
      */
     private $commentsFactory;
+
+    /**
+     * @var \Inchoo\Sample03\Api\Data\CommentsSearchResultsInterfaceFactory
+     */
+    private $searchResultsInterfaceFactory;
+
+    private $collectionProcessor;
 
     public function __construct
     (
         \Inchoo\Sample03\Model\ResourceModel\Comments\CollectionFactory $collectionFactory,
-        \Inchoo\Sample03\Model\ResourceModel\Comments $commentsResource,
-        \Inchoo\Sample03\Model\CommentsFactory $commentsFactory
+        \Inchoo\Sample03\Model\ResourceModel\Comments $commentResource,
+        \Inchoo\Sample03\Model\CommentsFactory $commentsFactory,
+        \Inchoo\Sample03\Api\Data\CommentsSearchResultsInterfaceFactory $searchResultsInterfaceFactory,
+        CollectionProcessor $collectionProcessor
+
     )
     {
         $this->collectionFactory = $collectionFactory;
-        $this->commentsRecourse = $commentsResource;
+        $this->commentResource = $commentResource;
         $this->commentsFactory = $commentsFactory;
+        $this->searchResultsInterfaceFactory = $searchResultsInterfaceFactory;
+        $this->collectionProcessor = $collectionProcessor;
     }
 
-    public function save(\Inchoo\Sample03\Api\Data\CommentsInterface $comment)
+    /**
+     * Save DTO in database
+     *
+     * @param \Inchoo\Sample03\Api\Data\CommentsInterface $comments
+     * @return \Inchoo\Sample03\Api\Data\CommentsInterface
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     */
+    public function save(CommentsInterface $comment)
     {
         try {
-            $this->commentsRecourse->save($comment);
+            $this->commentResource->save($comment);
         }catch (\Exception $exception){
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
         return $comment;
     }
 
+    /**
+     * Deletes DTO from database
+     *
+     * @param \Inchoo\Sample03\Api\Data\CommentsInterface $comment
+     * @return boolean, true on success
+     * @throws \Magento\Framework\Exception\CouldNotSaveException
+     */
     public function delete(\Inchoo\Sample03\Api\Data\CommentsInterface $comment)
     {
         try {
-            $this->commentsRecourse->delete($comment);
+            $this->commentResource->delete($comment);
         }catch (\Exception $exception){
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
         return true;
     }
 
-    public function getById()
+    /**
+     * Returns model object with id
+     *
+     * @param int, $id
+     * @return \Inchoo\Sample03\Api\Data\CommentsInterface
+     * @throws \PhpMyAdmin\Di\NotFoundException
+     */
+    public function getById($id)
     {
-        // TODO: Implement getById() method.
+        $model = $this->commentsFactory->create();
+        $this->commentResource->load($model, $id);
+        if(!$model->getById()){
+            throw new NotFoundException(__("There is no souch entitiy with id: " . $id));
+        }
+        return $model;
     }
 
-    public function getList()
+    /**
+     * Use filters on rows and return rows
+     *
+     * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
+     * @return \Inchoo\Sample03\Api\Data\CommentsSearchResultsInterface
+     */
+    public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria)
     {
-        // TODO: Implement getList() method.
+        /** @var \Inchoo\Sample03\Model\ResourceModel\Comments\Collection */
+        $collection = $this->collectionFactory->create();
+
+        //apply Search Criteria to Collection
+        $this->collectionProcessor->process($searchCriteria, $collection);
+
+        /** @var \Magento\Framework\Api\Search\SearchResult */
+        $searchResult = $this->searchResultsInterfaceFactory->create();
+        $searchResult->setSearchCriteria($searchCriteria);
+        $searchResult->setItems($collection->getItems());
+        $searchResult->setTotalCount($collection->getSize());
+        return $searchResult;
     }
 
-    public function deleteById()
+
+    /**
+     * Deletes model object with id
+     *
+     * @param int, $id
+     * @return bool, true on success
+     * @throws \PhpMyAdmin\Di\NotFoundException
+     */
+    public function deleteById($id)
     {
-        // TODO: Implement deleteById() method.
+        $model = $this->getById($id);
+        return $this->delete($model);
     }
 }

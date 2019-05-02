@@ -1,6 +1,6 @@
 <?php
 
-namespace Inchoo\Sample03\Controller\Test;
+namespace Inchoo\Sample03\Controller\News;
 
 class Crud extends \Magento\Framework\App\Action\Action
 {
@@ -18,11 +18,14 @@ class Crud extends \Magento\Framework\App\Action\Action
     (
         \Magento\Framework\App\Action\Context $context,
         \Inchoo\Sample03\Api\Data\CommentsInterfaceFactory $commentsInterfaceFactory,
-        \Inchoo\Sample03\Model\CommentsRepository $commentsRepository
+        \Inchoo\Sample03\Model\CommentsRepository $commentsRepository,
+        \Inchoo\Sample03\Model\CommentsFactory $commentsFactory
+
     ) {
         parent::__construct($context);
         $this->commentsInterfaceFactory = $commentsInterfaceFactory;
         $this->commentsRepository = $commentsRepository;
+        $this->commentsFactory = $commentsFactory;
     }
 
 
@@ -31,13 +34,10 @@ class Crud extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-
-        for($i=0; $i<20; ++$i){
-            $model = $this->commentsInterfaceFactory->create();
-            $model->setCommentsContent("bla asegsegbla bla");
-            $model->setInchooNews(rand(8, 23));
-            $this->commentsRepository->save($model);
-        }
+        $model = $this->commentsFactory->create();
+        $model->setCommentsContent("bla bla bla ");
+        $model->setInchooNews(4);
+        $this->commentsRepository->save($model);
     }
 
 }

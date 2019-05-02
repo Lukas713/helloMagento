@@ -10,8 +10,6 @@ class Komentar extends Action
 {
     protected $pageFactory;
 
-    protected $commentsFactory;
-
     public function __construct
     (
         Context $context,
