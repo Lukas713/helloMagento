@@ -231,6 +231,7 @@ return [
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
         'Magento_WishlistSampleData' => 1,
+        'Pulsestorm_Nofrillslayout' => 1,
         'ShipperHQ_Common' => 1,
         'ShipperHQ_Logger' => 1,
         'ShipperHQ_Shipper' => 1,
