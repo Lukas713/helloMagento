@@ -1,0 +1,16 @@
+<?php
+    /**
+     * \Inchoo\Sample\Block\Result $block
+     */
+    $result = $block->renderMessage();
+    if(is_string($result)){
+        echo $result;
+        return;
+    }
+    ?>
+
+<h2>Sccesfully added</h2>
+<p>
+    Added news with title: <b><?php echo $result->getTitle();?></b>
+    at id: <?php  echo $result->getId();  ?>
+</p>

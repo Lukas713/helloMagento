@@ -1,0 +1,9 @@
+<?php
+ /**
+  * @var \Inchoo\Sample\Block\ListAction $block
+  */
+    foreach($block->display()->getItems() as $item){
+        echo 'id: ' . $item->getId() . '<br>';
+        echo 'title: ' . $item->getNewsTitle() . '<br>';
+        echo 'content: ' . $item->getNewsContent() . '<hr>';
+    }

@@ -1,0 +1,32 @@
+<?php
+
+    /**
+     * @var \Inchoo\Sample\Block\Insert $block
+     */
+    if(!($block->getFormAction())){
+        echo '<h2>Inserting is not possible, check system configuration!</h2>';
+        return;
+    }
+?>
+    <h1>Inserting news</h1>
+    <form action="<?php echo $block->getFormAction()?>" method="post">
+        <fieldset class="fieldset">
+            <div class="field name required">
+                <label for="title">Insert title</label>
+                <div class="control">
+                    <input type="text" name="title" id="title">
+                </div>
+            </div>
+            <div class="field name required">
+                <label for="content">Insert content</label>
+                <div class="control">
+                    <input type="text" name="content" id="content">
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="submit" class="action submit primary" name="submit" id="submit">
+                </div>
+            </div>
+        </fieldset>
+    </form>

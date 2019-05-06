@@ -28,8 +28,4 @@
                 </argument>
             </arguments>
     </virtualType>
-
-    <preference for="Inchoo\Sample02\Model\A" type="Inchoo\Sample02\Model\B"/>
-    <preference for="Inchoo\Sample02\Model\B" type="Inchoo\Sample02\Model\C"/>
-    <preference for="Inchoo\Sample02\Model\C" type="Inchoo\Sample02\Model\A"/>
 </config>

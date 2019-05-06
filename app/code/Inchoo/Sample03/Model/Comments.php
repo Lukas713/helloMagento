@@ -1,9 +1,11 @@
 <?php
 
-
 namespace Inchoo\Sample03\Model;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
 use Inchoo\Sample03\Api\Data\CommentsInterface;
 use Magento\Framework\Model\AbstractModel;
 

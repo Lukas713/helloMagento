@@ -2,22 +2,41 @@
 
 namespace Inchoo\Sample03\Model;
 
+<<<<<<< HEAD
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\CouldNotSaveException;
+use Inchoo\Sample03\Api\Data\CommentsInterface;
+use Magento\OfflineShipping\Model\ResourceModel\Carrier\Tablerate\CSV\ColumnNotFoundException;
+=======
 use Magento\Framework\Api\SearchCriteria\CollectionProcessor;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Inchoo\Sample03\Api\Data\CommentsInterface;
 use PhpMyAdmin\Di\NotFoundException;
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
 
 class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInterface
 {
+
     /**
+<<<<<<< HEAD
+     * @var \Inchoo\Sample03\Model\ResourceModel\Comments\
+=======
      * @var \Inchoo\Sample03\Model\ResourceModel\Comments\CollectionFactory
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
      */
+
     private $collectionFactory;
 
     /**
+<<<<<<< HEAD
+     * @var  \Inchoo\Sample03\Model\ResourceModel\Comments
+     */
+    private $commentsResource;
+=======
      * @var \Inchoo\Sample03\Model\ResourceModel\Comments
      */
     private $commentResource;
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
 
     /**
      * @var \Inchoo\Sample03\Model\CommentsFactory
@@ -42,14 +61,22 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
     )
     {
         $this->collectionFactory = $collectionFactory;
+<<<<<<< HEAD
+        $this->commentsResource = $commentsResource;
+=======
         $this->commentResource = $commentResource;
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
         $this->commentsFactory = $commentsFactory;
         $this->searchResultsInterfaceFactory = $searchResultsInterfaceFactory;
         $this->collectionProcessor = $collectionProcessor;
     }
 
     /**
+<<<<<<< HEAD
+     * Save Comment data
+=======
      * Save DTO in database
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
      *
      * @param \Inchoo\Sample03\Api\Data\CommentsInterface $comments
      * @return \Inchoo\Sample03\Api\Data\CommentsInterface
@@ -58,7 +85,11 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
     public function save(CommentsInterface $comment)
     {
         try {
+<<<<<<< HEAD
+            $this->commentsResource->save($comment);
+=======
             $this->commentResource->save($comment);
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
         }catch (\Exception $exception){
             throw new CouldNotSaveException(__($exception->getMessage()));
         }
@@ -66,6 +97,18 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
     }
 
     /**
+<<<<<<< HEAD
+     * deletes comment
+     *
+     * @param \Inchoo\Sample03\Api\Data\CommentsInterface $comments
+     * @return bool true on success
+     * @throws CouldNotDeleteException
+     */
+    public function delete(CommentsInterface $comment)
+    {
+        try {
+            $this->commentsResource->delete($comment);
+=======
      * Deletes DTO from database
      *
      * @param \Inchoo\Sample03\Api\Data\CommentsInterface $comment
@@ -76,13 +119,31 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
     {
         try {
             $this->commentResource->delete($comment);
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
         }catch (\Exception $exception){
-            throw new CouldNotSaveException(__($exception->getMessage()));
+            throw new CouldNotDeleteException(__($exception->getMessage()));
         }
         return true;
     }
 
     /**
+<<<<<<< HEAD
+     * loads comment with id
+     *
+     * @param int $Id
+     * @return \Inchoo\Sample03\Api\Data\CommentsInterface
+     * @throws ColumnNotFoundException
+     */
+    public function getById($Id)
+    {
+        try {
+            $comment = $this->commentsFactory->create();
+            $this->commentsResource->load($comment, $Id);
+        }catch (\Exception $exception) {
+            throw new ColumnNotFoundException(__($exception->getMessage()));
+        }
+        return $comment;
+=======
      * Returns model object with id
      *
      * @param int, $id
@@ -97,6 +158,7 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
             throw new NotFoundException(__("There is no souch entitiy with id: " . $id));
         }
         return $model;
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
     }
 
     /**
@@ -121,6 +183,24 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
         return $searchResult;
     }
 
+<<<<<<< HEAD
+    /**
+     * deletes comment with id
+     *
+     * @param int $commentId
+     * @return bool true on success
+     * @throws \Magento\OfflineShipping\Model\ResourceModel\Carrier\Tablerate\CSV\ColumnNotFoundException
+     */
+    public function deleteById($Id)
+    {
+        try {
+            $comment = $this->commentsFactory->create();
+            $this->commentsResource->delete($comment);
+        }catch (\Exception $exception){
+            throw new ColumnNotFoundException(__($exception->getMessage()));
+        }
+        return true;
+=======
 
     /**
      * Deletes model object with id
@@ -133,5 +213,6 @@ class CommentsRepository implements \Inchoo\Sample03\Api\CommentsRepositoryInter
     {
         $model = $this->getById($id);
         return $this->delete($model);
+>>>>>>> 8e12c73e0762bf44d2618a0790d7b89d12f62480
     }
 }
