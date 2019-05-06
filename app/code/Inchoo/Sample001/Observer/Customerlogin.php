@@ -1,14 +1,12 @@
 <?php
 
-
 namespace Inchoo\Sample001\Observer;
-
 
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Psr\Log\LoggerInterface;
 
-class AuthUser implements ObserverInterface
+class Customerlogin implements ObserverInterface
 {
     private $logger;
 
@@ -19,6 +17,7 @@ class AuthUser implements ObserverInterface
 
     public function execute(Observer $observer)
     {
-        $client = $observer->getEvent()->;
+        $client = $observer->getEvent()->getCustomer();
+        $this->logger->info($client->getEmail() . ' has logged in');
     }
 }

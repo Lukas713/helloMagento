@@ -1,6 +1,6 @@
 <?php
 
-namespace Inchoo\Sample001\Controller;
+namespace Inchoo\Sample001\Controller\Index;
 
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;

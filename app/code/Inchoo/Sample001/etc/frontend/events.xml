@@ -3,4 +3,10 @@
     <event name="customer_login">
         <observer name="customer_login_observer" instance="Inchoo\Sample001\Observer\Customerlogin" />
     </event>
+    <event name="customer_logout">
+        <observer name="customer_logout_observer" instance="Inchoo\Sample001\Observer\Customerlogout" />
+    </event>
+    <event name="sample_index_observer">
+        <observer name="sample_observer" instance="Inchoo\Sample001\Observer\Sample" />
+    </event>
 </config>
