@@ -70,6 +70,14 @@ class NewsRepository implements NewsRepositoryInterface
     }
 
     /**
+     * @return int
+     */
+    public function getSize() {
+        $collection = $this->collectionFactory->create();
+        return $collection->getSize();
+    }
+
+    /**
      * Use filters on rows and return rows
      *
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria

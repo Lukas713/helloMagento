@@ -2,7 +2,6 @@
 
 namespace Inchoo\Sample\Block;
 
-use Inchoo\Sample\Api\Data\NewsInterface;
 use Inchoo\Sample\Api\Data\NewsInterfaceFactory;
 use Inchoo\Sample\Api\NewsRepositoryInterface;
 use Magento\Framework\Api\FilterBuilder;
@@ -49,11 +48,19 @@ class ListAction extends Template
 
     public function display()
     {
+
         $this->searchCriteriaBuilder->setPageSize(3);
-        $this->searchCriteriaBuilder->setCurrentPage(1);
+        $this->searchCriteriaBuilder->setCurrentPage(2);
         $searchCriteria = $this->searchCriteriaBuilder->create();
 
         $list = $this->newsRepository->getList($searchCriteria);
         return $list;
+    }
+
+    public function displayPaggination()
+    {
+        $count = $this->newsRepository->getSize();
+        $pages = ceil($count / 3);  //toliko brojeva u paginaciji
+
     }
 }

@@ -41,4 +41,9 @@ interface NewsRepositoryInterface
      */
     public function getList(\Magento\Framework\Api\SearchCriteriaInterface $searchCriteria);
 
+    /**
+     * @return int
+     */
+    public function getSize();
+
 }
