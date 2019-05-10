@@ -2,10 +2,27 @@
 
 namespace Inchoo\Sample06\Controller\Adminhtml\News;
 
+use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\View\Result\PageFactory;
 
-class Edit extends \Magento\Backend\App\Action
+class Edit extends Action
 {
+    /**
+     * @var PageFactory
+     */
+    private $pageFactory;
+
+    public function __construct
+    (
+        Action\Context $context,
+        PageFactory $pageFactory
+    )
+    {
+        parent::__construct($context);
+        $this->pageFactory = $pageFactory;
+    }
+
     /**
      * Edit News action.
      *

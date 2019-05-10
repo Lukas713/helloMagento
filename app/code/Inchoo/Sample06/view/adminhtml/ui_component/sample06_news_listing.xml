@@ -39,16 +39,35 @@
 
     <listingToolbar name="listing_top">
         <settings>
-            <sticky>false</sticky>
+            <sticky>true</sticky>
         </settings>
-
-        <!--
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
-        -->
-
+        <filters name="listing_filters">
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    <caption translate="true">All Store Views</caption>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                </settings>
+            </filterSelect>
+        </filters>
         <paging name="listing_paging"/>
-
+        <massaction name="listing_massaction"
+                    component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="sample06/news/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
     </listingToolbar>
 
     <columns name="sample06_news_columns">
@@ -71,6 +90,11 @@
             </settings>
         </column>
         <actionsColumn name="actions" class="Inchoo\Sample06\Ui\Component\Listing\Column\EditActions">
+            <settings>
+                <indexField>news_id</indexField>
+            </settings>
+        </actionsColumn>
+        <actionsColumn name="actions_dcelete" class="Inchoo\Sample06\Ui\Component\Listing\Column\DeleteActions">
             <settings>
                 <indexField>news_id</indexField>
             </settings>

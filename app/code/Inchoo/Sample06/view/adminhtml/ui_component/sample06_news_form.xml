@@ -39,7 +39,7 @@
             </item>
         </argument>
         <settings>
-            <submitUrl path="sample06/news/save"/>
+            <submitUrl path="sample06/news/insert"/>
         </settings>
 
         <!--

@@ -44,4 +44,6 @@ interface NewsRepositoryInterface
 
 
     public function addRecord($params = []);
+
+    public function removeRecord($id);
 }

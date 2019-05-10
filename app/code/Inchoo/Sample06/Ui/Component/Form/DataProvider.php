@@ -27,7 +27,6 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         array $data = []
     ) {
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
-
         $this->collection = $collectionFactory->create();
     }
 

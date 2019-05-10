@@ -94,7 +94,7 @@ class NewsRepository implements NewsRepositoryInterface
             $this->newsResource->delete($news);
             return true;
         } catch (\Exception $exception){
-            throw new CouldNotSaveException(__($exception->getMessage()));
+            throw new CouldNotDeleteException(__($exception->getMessage()));
         }
     }
 
@@ -117,9 +117,13 @@ class NewsRepository implements NewsRepositoryInterface
         return $searchResults;
     }
 
-    //TO DO: add created_at(), updated_at()
 
-
+    /**
+     * Adds record
+     *
+     * @param array $array
+     * @throws CouldNotSaveException
+     */
     public function addRecord($array = []){
 
         /**
@@ -135,5 +139,22 @@ class NewsRepository implements NewsRepositoryInterface
         $model->setTitle($array[NewsInterface::CONTENT]);
         $model->setContent($array[NewsInterface::TITLE]);
         $this->save($model);
+    }
+
+    /**
+     * Removes record from database
+     *
+     * @param int $id
+     * @throws CouldNotDeleteException
+     * @throws NoSuchEntityException
+     */
+    public function removeRecord($id)
+    {
+        try {
+            $model = $this->getById($id);
+        }catch (NoSuchEntityException $exception){
+            throw $exception;
+        }
+        $this->delete($model);
     }
 }

@@ -8,7 +8,7 @@ use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Message\Manager;
 use Magento\Framework\View\Result\PageFactory;
 
-class Save extends Action
+class Insert extends Action
 {
 
     protected $manager;
