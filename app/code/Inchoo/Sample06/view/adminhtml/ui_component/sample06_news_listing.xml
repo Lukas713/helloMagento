@@ -69,7 +69,6 @@
             </action>
         </massaction>
     </listingToolbar>
-
     <columns name="sample06_news_columns">
         <selectionsColumn name="ids">
             <settings>
