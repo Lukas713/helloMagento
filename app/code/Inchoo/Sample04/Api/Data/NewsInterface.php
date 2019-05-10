@@ -9,6 +9,7 @@ interface NewsInterface
      */
     const NEWS_ID       = 'news_id';
     const TITLE         = 'title';
+    const CONTENT       = 'content';
     /**#@-*/
 
     /**
@@ -40,5 +41,16 @@ interface NewsInterface
      * @return NewsInterface
      */
     public function setTitle($title);
+
+    /**
+     * @param string $content
+     * @return NewsInterface
+     */
+    public function setContent($content);
+
+    /**
+     * @return string
+     */
+    public function getContent();
 
 }

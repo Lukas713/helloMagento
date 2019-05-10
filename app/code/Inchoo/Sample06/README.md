@@ -12,4 +12,4 @@
 * Find where ACLs are visible in Magento, how to set User and Roles
 * Create system.xml with yes/no setting
 * Examine <htmlContent UI component and implement example to admin form (hello world)
-* Find and examine Simple grid and form in Magento
+* Find and examine Simple gna mi istjerid and form in Magento

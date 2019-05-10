@@ -117,4 +117,23 @@ class NewsRepository implements NewsRepositoryInterface
         return $searchResults;
     }
 
+    //TO DO: add created_at(), updated_at()
+
+
+    public function addRecord($array = []){
+
+        /**
+         * @var \Inchoo\Sample04\Api\Data\NewsInterface $model
+         */
+        try {
+            $model = $this->getById($array[NewsInterface::NEWS_ID]);
+        }catch(NoSuchEntityException $exception){
+            $model = $this->newsModelFactory->create();
+            $exception->getMessage();
+        }
+
+        $model->setTitle($array[NewsInterface::CONTENT]);
+        $model->setContent($array[NewsInterface::TITLE]);
+        $this->save($model);
+    }
 }

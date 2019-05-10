@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<!-- TOP node mora bit Components UI ime i mora sadržavat put do XSD sheme -->
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    
-    <argument name="data" xsi:type="array">
+
+    <!-- Konfiguracija za basic Ui Component -->
+    <argument name="data" xsi:type="array"> <!-- argument ime mora biti data -->
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">sample06_news_form.news_form_data_source</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
     </argument>
 
+    <!-- it serves only the purpose to have the ui components config files more readable and get autocomplete when defining something. -->
     <settings>
         <namespace>sample06_news_form</namespace>
         <dataScope>data</dataScope>
@@ -28,7 +30,8 @@
             </button>
         </buttons>
     </settings>
-    
+
+    <!--Magento provides the DataSource object, which is designed to interact with data in your UI component -->
     <dataSource name="news_form_data_source">
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
@@ -38,6 +41,12 @@
         <settings>
             <submitUrl path="sample06/news/save"/>
         </settings>
+
+        <!--
+        This references a PHP class that must implement \Magento\Framework\View\Element\UiComponent\DataProvider\DataProviderInterface.
+         To meet that requirement, it can extend \Magento\Ui\DataProvider\AbstractDataProvider.
+         The DataProvider class is the primary source of any data or metadata that the component needs or will use.
+         -->
         <dataProvider class="Inchoo\Sample06\Ui\Component\Form\DataProvider" name="news_form_data_source">
             <settings>
                 <requestFieldName>news_id</requestFieldName>
@@ -67,12 +76,11 @@
             </settings>
         </input>
 
-        <textarea name="sample_textarea" sortOrder="20">
+        <textarea name="content" sortOrder="20">
             <settings>
                 <label translate="true">Sample Textarea</label>
-                <dataScope>title</dataScope>
+                <dataScope>content</dataScope>
             </settings>
         </textarea>
-
     </fieldset>
 </form>

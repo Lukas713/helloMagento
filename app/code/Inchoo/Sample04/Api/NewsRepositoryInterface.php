@@ -42,4 +42,6 @@ interface NewsRepositoryInterface
      */
     public function getList(SearchCriteriaInterface $searchCriteria);
 
+
+    public function addRecord($params = []);
 }

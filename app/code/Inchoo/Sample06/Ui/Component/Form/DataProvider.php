@@ -2,6 +2,12 @@
 
 namespace Inchoo\Sample06\Ui\Component\Form;
 
+/**
+ * Class DataProvider
+ * @package Inchoo\Sample06\Ui\Component\Form
+ *
+ * The DataProvider class is the primary source of any data or metadata that the component needs or will use.
+ */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
     /**

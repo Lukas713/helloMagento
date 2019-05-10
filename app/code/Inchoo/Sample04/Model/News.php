@@ -59,4 +59,22 @@ class News extends AbstractModel implements NewsInterface
         return $this->setData(self::TITLE, $title);
     }
 
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return News|void
+     */
+    public function setContent($content) {
+        return $this->setData(self::CONTENT, $content);
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->getData(self::CONTENT);
+    }
+
 }
